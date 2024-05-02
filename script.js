@@ -32,3 +32,16 @@ for (i = 0; i < myLibrary.length; i++) {
 
 const books = document.getElementById('library');
 books.innerHTML = `<ul>${bookListHTML}</ul>`;
+
+const buttonNewBook = document.getElementById('buttonNewBook');
+const closeForm = document.getElementById('closeForm');
+const formNewBook = document.getElementById('formNewBook');
+
+buttonNewBook.addEventListener('click', () => {
+  formNewBook.showModal();
+});
+
+closeForm.addEventListener('click', (event) => {
+  formNewBook.close();
+  event.preventDefault();
+});
