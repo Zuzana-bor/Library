@@ -1,5 +1,3 @@
-console.log('hello wordl');
-
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -9,19 +7,28 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-const addBookToLibrary = () => {
-  const title = prompt('Enter the title of the book:');
-  const author = prompt('Enter the author of the book:');
-  const pages = parseInt(prompt('Enter the number of pages:'));
-  const readStatus = prompt('Have you read this book? (yes/no)').toLowerCase();
-  const read = readStatus === 'yes' ? true : false;
-
+function addBookToLibrary(title, author, pages, read) {
   const newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
+}
 
-  console.log('Book added to the library!');
-};
+addBookToLibrary('Šikmý kostel', 'Karin Ledecká', 350, true);
+addBookToLibrary('Anděl Smrti', 'Robert Bryndza', 481, false);
+addBookToLibrary('Slzotvůrce', 'Erin Doom', 658, true);
 
-addBookToLibrary();
+let bookListHTML = '';
 
-console.log(myLibrary);
+for (i = 0; i < myLibrary.length; i++) {
+  const list = myLibrary[i];
+  console.log(list);
+
+  bookListHTML += ` <li>
+<h2>${list.title}</h2>
+<p>Author: ${list.author}</p>
+<p>Pages: ${list.pages}</p>
+<p>Status: ${list.read ? 'Read' : 'Not read'}</p>
+</li>`;
+}
+
+const books = document.getElementById('library');
+books.innerHTML = `<ul>${bookListHTML}</ul>`;
